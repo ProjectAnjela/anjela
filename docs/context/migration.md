@@ -19,6 +19,10 @@ This file defines how the migration pack should be broken down into stable, vers
 - Treat archive references as pointers, not as a dump of raw conversation data
 - If a file cannot be made safe, keep it private and document only the existence of the artifact
 
+## Status
+
+The initial public-safe scaffold now exists. Future updates should replace placeholders with confirmed content only.
+
 ## Suggested next step
 
-Create the topical files listed above, then update `README.md` and this map when the structure changes.
+Maintain the topical files as the project evolves, then update this map when the structure changes.
