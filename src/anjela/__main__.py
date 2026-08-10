@@ -3,6 +3,7 @@
 import os
 
 from .core import Anjela
+from .long_term_memory import LongTermMemory
 from .memory import ConversationMemory
 from .providers import EchoProvider, OpenAIProvider, Provider
 from .sqlite_memory import SQLiteConversationStore
@@ -19,12 +20,14 @@ def main() -> None:
     provider = build_provider()
     store = SQLiteConversationStore(os.getenv("ANJELA_DB", "anjela.db"))
     memory = ConversationMemory(store=store)
-    assistant = Anjela(provider, memory)
+    long_term = LongTermMemory(store)
+    assistant = Anjela(provider, memory, long_term)
 
     if isinstance(provider, OpenAIProvider):
-        print(f"Anjela online ({provider.model}). Напиши 'exit' для выхода.")
+        print(f"Anjela online ({provider.model}).")
     else:
-        print("Anjela local mode. Для AI задай OPENAI_API_KEY. Напиши 'exit' для выхода.")
+        print("Anjela local mode. Для AI задай OPENAI_API_KEY.")
+    print("Команды: /remember key=value, /memory, /forget key, exit")
 
     while True:
         try:
@@ -33,10 +36,35 @@ def main() -> None:
             print()
             break
 
-        if text.strip().lower() in {"exit", "quit"}:
+        command = text.strip()
+        if command.lower() in {"exit", "quit"}:
             break
 
         try:
+            if command.startswith("/remember "):
+                payload = command[len("/remember "):].strip()
+                if "=" not in payload:
+                    raise ValueError("Формат: /remember ключ=значение")
+                key, value = payload.split("=", 1)
+                long_term.remember(key, value)
+                print("Анжела> Запомнила.")
+                continue
+
+            if command == "/memory":
+                facts = long_term.all()
+                if not facts:
+                    print("Анжела> Долговременная память пока пустая.")
+                else:
+                    print("Анжела> Я помню:")
+                    for fact in facts:
+                        print(f"  {fact.as_context()}")
+                continue
+
+            if command.startswith("/forget "):
+                long_term.forget(command[len("/forget "):].strip())
+                print("Анжела> Забыла.")
+                continue
+
             print(f"Анжела> {assistant.ask(text)}")
         except ValueError as exc:
             print(f"Анжела> {exc}")
