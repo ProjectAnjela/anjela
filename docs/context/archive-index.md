@@ -2,6 +2,11 @@
 
 This file points to older conversation material and archived context without dumping the raw archive into the public repository.
 
+## Archive pointers
+
+- `6a79f2b8-5b88-83eb-9017-5c6acdefc4da` - `Migrate Anjela into GitHub context`
+  - Current migration thread covering repository state, storage layout, and safe context organization
+
 ## What belongs here
 
 - Archive identifiers
@@ -15,12 +20,6 @@ This file points to older conversation material and archived context without dum
 - Secrets or credentials
 - Raw personal data
 - Anything that should not be publicly discoverable
-
-## Suggested entry format
-
-```text
-- archive-id: brief description
-```
 
 ## Rule of thumb
 
