@@ -9,7 +9,7 @@ This directory is the canonical place for sanitized, versioned context that help
 - Sanitized durable memory summaries
 - Project history and decisions
 - Archive indexes and pointers to older conversations
-- Migration notes and manifests
+- Migration notes, manifests, and templates
 
 ## What does not belong here
 
@@ -28,6 +28,10 @@ docs/context/
 ├── memory.md
 ├── project-history.md
 ├── archive-index.md
+├── templates/
+│   ├── README.md
+│   ├── ANJELA_BOOT.template.md
+│   └── ANJELA_MEMORY.template.md
 ├── migration.md
 └── migration/
     ├── README.md
@@ -38,10 +42,11 @@ docs/context/
 ## Reading order
 
 1. `README.md` for the rules of the folder
-2. `migration.md` for how the old migration pack maps into this layout
-3. `migration/README.md` for how to maintain the migration subfolder
-4. The topical files for the actual working context
-5. The migration subfolder for source-to-target tracking
+2. `templates/README.md` for safe source scaffolding
+3. `migration.md` for how the old migration pack maps into this layout
+4. `migration/README.md` for how to maintain the migration subfolder
+5. The topical files for the actual working context
+6. The migration subfolder for source-to-target tracking
 
 ## Operating rule
 
