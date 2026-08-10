@@ -2,33 +2,42 @@
 
 Personal AI assistant project.
 
-Anjela is being built as a modular assistant with a small, testable core and clear boundaries for memory, tools, providers, and interfaces.
+Anjela is being built as a modular assistant with a small, testable core and clear boundaries for memory, tools, providers, interfaces, and project context.
 
 ## Current stage
 
-**MVP 0.2 — first real AI provider**
+**MVP 0.2 - first real AI provider + durable memory foundation**
 
 - Python project layout
 - Core assistant loop
 - Provider interface
 - Local in-memory conversation state
+- Durable SQLite-backed long-term memory
 - OpenAI Responses API adapter
 - Automatic local fallback when no API key is configured
 - CLI entry point
 - Unit tests
 - GitHub Actions CI
+- Sanitized context index for migration materials
 
 ## Project structure
 
 ```text
 anjela/
+├── docs/
+│   └── context/
+│       ├── README.md
+│       └── migration.md
 ├── .github/workflows/main.yml
 ├── src/anjela/
 │   ├── __init__.py
 │   ├── __main__.py
 │   ├── core.py
+│   ├── facts.py
+│   ├── long_term_memory.py
+│   ├── memory.py
 │   ├── providers.py
-│   └── memory.py
+│   └── sqlite_memory.py
 ├── tests/
 │   ├── test_core.py
 │   └── test_providers.py
@@ -37,6 +46,12 @@ anjela/
 ├── pyproject.toml
 └── README.md
 ```
+
+## Context layout
+
+The canonical place for sanitized migration context is [`docs/context/README.md`](docs/context/README.md).
+
+The migration map lives in [`docs/context/migration.md`](docs/context/migration.md).
 
 ## Run locally
 
@@ -82,18 +97,17 @@ pytest
 
 ## Architecture
 
-The assistant core knows only about the `Provider` interface. The current OpenAI adapter uses the official Python SDK and the Responses API. This keeps the model vendor behind one boundary, so later providers can be added without rewriting the conversation loop.
+The assistant core knows only about the `Provider` interface. The current OpenAI adapter uses the official Python SDK and the Responses API. Local conversation history and durable facts are stored separately through SQLite-backed memory classes, while public context docs stay sanitized and versioned.
 
 API keys are never stored in the repository. `.env` is ignored by Git; use `.env.example` as the template for local configuration.
 
 ## Roadmap
 
 1. Stable core and tests
-2. Real LLM provider adapter **← current**
-3. Persistent memory
-4. Tool/plugin system
-5. API service
-6. Web/mobile interface
-7. Deployment
+2. Real LLM provider adapter and durable memory **← current**
+3. Tool/plugin system
+4. API service
+5. Web/mobile interface
+6. Deployment
 
 The project deliberately grows in small, testable steps instead of turning into one giant script.
