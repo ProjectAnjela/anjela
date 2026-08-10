@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "anjela"
+version = "0.1.0"
+description = "A modular personal AI assistant"
+requires-python = ">=3.11"
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+anjela = "anjela.__main__:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
