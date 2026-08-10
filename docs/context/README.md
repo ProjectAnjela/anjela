@@ -23,12 +23,15 @@ This directory is the canonical place for sanitized, versioned context that help
 ```text
 docs/context/
 ├── README.md
-├── migration.md
 ├── boot.md
 ├── personality.md
 ├── memory.md
 ├── project-history.md
-└── archive-index.md
+├── archive-index.md
+├── migration.md
+└── migration/
+    ├── pack.md
+    └── manifest.md
 ```
 
 ## Reading order
@@ -36,6 +39,7 @@ docs/context/
 1. `README.md` for the rules of the folder
 2. `migration.md` for how the old migration pack maps into this layout
 3. The topical files for the actual working context
+4. The migration subfolder for source-to-target tracking
 
 ## Operating rule
 
