@@ -27,7 +27,15 @@ anjela/
 ├── docs/
 │   └── context/
 │       ├── README.md
-│       └── migration.md
+│       ├── boot.md
+│       ├── personality.md
+│       ├── memory.md
+│       ├── project-history.md
+│       ├── archive-index.md
+│       ├── migration.md
+│       └── migration/
+│           ├── pack.md
+│           └── manifest.md
 ├── .github/workflows/main.yml
 ├── src/anjela/
 │   ├── __init__.py
