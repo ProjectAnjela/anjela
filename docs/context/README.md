@@ -48,6 +48,10 @@ docs/context/
 5. The topical files for the actual working context
 6. The migration subfolder for source-to-target tracking
 
+## Status
+
+The context root is now populated with real public-safe content, not placeholders.
+
 ## Operating rule
 
 If a fact is not confirmed by repository content or an approved archive, keep it out of the public repo or mark it as a placeholder.
