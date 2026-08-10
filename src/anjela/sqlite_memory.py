@@ -2,8 +2,10 @@
 
 import sqlite3
 from pathlib import Path
+from typing import TYPE_CHECKING
 
-from .memory import Message
+if TYPE_CHECKING:
+    from .memory import Message
 
 
 class SQLiteConversationStore:
@@ -18,7 +20,7 @@ class SQLiteConversationStore:
             )
             connection.commit()
 
-    def add(self, message: Message) -> None:
+    def add(self, message: "Message") -> None:
         with sqlite3.connect(self.path) as connection:
             connection.execute(
                 "INSERT INTO messages (role, content) VALUES (?, ?)",
@@ -26,7 +28,9 @@ class SQLiteConversationStore:
             )
             connection.commit()
 
-    def history(self) -> list[Message]:
+    def history(self) -> list["Message"]:
+        from .memory import Message
+
         with sqlite3.connect(self.path) as connection:
             rows = connection.execute(
                 "SELECT role, content FROM messages ORDER BY id"
