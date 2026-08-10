@@ -4,12 +4,12 @@ This file groups the sanitized migration artifacts that were moved into the new 
 
 ## Contents
 
-- `docs/context/boot.md` - startup context and working rules
-- `docs/context/personality.md` - tone and communication style
-- `docs/context/memory.md` - durable, public-safe memory facts
-- `docs/context/project-history.md` - confirmed project milestones
-- `docs/context/archive-index.md` - archive pointers without raw transcripts
-- `docs/context/templates/` - safe source scaffolding for future migrations
+- `ANJELA_BOOT.md` - startup context and working rules
+- `ANJELA_PERSONALITY.md` - tone and communication style
+- `ANJELA_MEMORY.md` - durable, public-safe memory facts
+- `PROJECT_HISTORY.md` - confirmed project milestones
+- `ANJELA_ARCHIVE_INDEX.md` - archive pointers and navigation aid
+- `MIGRATION_MANIFEST.md` - source-to-target tracking for the pack
 
 ## Rule
 
