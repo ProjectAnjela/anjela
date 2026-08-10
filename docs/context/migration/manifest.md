@@ -19,13 +19,13 @@ This manifest records which source artifacts were migrated into the context layo
 
 | Source | Target | Status | Notes |
 | --- | --- | --- | --- |
-| verified repository state | `docs/context/boot.md` | confirmed | startup context populated from the live repo state |
-| verified repository state | `docs/context/personality.md` | confirmed | public-facing style populated from current project guidance |
-| verified repository state | `docs/context/memory.md` | confirmed | durable project memory populated with safe facts |
-| verified repository state | `docs/context/project-history.md` | confirmed | milestones recorded from current repository content |
-| migration thread archive | `docs/context/archive-index.md` | confirmed | archive pointer recorded without raw transcript data |
-| public-safe context pack | `docs/context/migration/pack.md` | confirmed | package contents documented |
-| public-safe migration guide | `docs/context/migration/README.md` | confirmed | folder usage documented |
+| `ANJELA_BOOT.md` | `docs/context/boot.md` | confirmed | imported from the migration pack |
+| `ANJELA_PERSONALITY.md` | `docs/context/personality.md` | confirmed | imported from the migration pack |
+| `ANJELA_MEMORY.md` | `docs/context/memory.md` | confirmed | imported from the migration pack |
+| `PROJECT_HISTORY.md` | `docs/context/project-history.md` | confirmed | imported from the migration pack |
+| `ANJELA_ARCHIVE_INDEX.md` | `docs/context/archive-index.md` | confirmed | imported from the migration pack |
+| `MIGRATION_MANIFEST.md` | `docs/context/migration/manifest.md` | confirmed | this manifest documents the imported pack |
+| `ANJELA_MIGRATION_PACK.md` | `docs/context/migration/pack.md` | confirmed | imported package overview |
 
 ## Rule
 
