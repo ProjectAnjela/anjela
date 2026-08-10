@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from anjela.core import Anjela
+from anjela.long_term_memory import LongTermMemory
 from anjela.memory import ConversationMemory
 from anjela.providers import EchoProvider
 from anjela.sqlite_memory import SQLiteConversationStore
@@ -42,3 +43,23 @@ def test_sqlite_memory_survives_restart(tmp_path: Path) -> None:
         ("user", "Меня зовут Лёша"),
         ("assistant", "Запомнила"),
     ]
+
+
+def test_long_term_memory_survives_restart(tmp_path: Path) -> None:
+    database = tmp_path / "anjela.db"
+    first = LongTermMemory(SQLiteConversationStore(database))
+    first.remember("name", "Лёша", "identity")
+
+    second = LongTermMemory(SQLiteConversationStore(database))
+
+    assert second.context() == "- [identity] name: Лёша"
+
+
+def test_long_term_memory_can_update_and_forget(tmp_path: Path) -> None:
+    memory = LongTermMemory(SQLiteConversationStore(tmp_path / "anjela.db"))
+    memory.remember("city", "Харьков")
+    memory.remember("city", "Киев")
+    assert [fact.value for fact in memory.all()] == ["Киев"]
+
+    memory.forget("city")
+    assert memory.all() == []
