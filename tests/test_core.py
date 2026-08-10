@@ -1,6 +1,9 @@
+from pathlib import Path
+
 from anjela.core import Anjela
 from anjela.memory import ConversationMemory
 from anjela.providers import EchoProvider
+from anjela.sqlite_memory import SQLiteConversationStore
 
 
 def test_ask_stores_conversation() -> None:
@@ -25,3 +28,17 @@ def test_empty_message_is_rejected() -> None:
         assert str(exc) == "Message cannot be empty"
     else:
         raise AssertionError("Expected ValueError")
+
+
+def test_sqlite_memory_survives_restart(tmp_path: Path) -> None:
+    database = tmp_path / "anjela.db"
+    first = ConversationMemory(store=SQLiteConversationStore(database))
+    first.add("user", "Меня зовут Лёша")
+    first.add("assistant", "Запомнила")
+
+    second = ConversationMemory(store=SQLiteConversationStore(database))
+
+    assert [(m.role, m.content) for m in second.history()] == [
+        ("user", "Меня зовут Лёша"),
+        ("assistant", "Запомнила"),
+    ]
