@@ -15,15 +15,17 @@ This manifest records which source artifacts were migrated into the context layo
 - status
 - notes about sanitization
 
-## Suggested table
+## Current mapping
 
 | Source | Target | Status | Notes |
 | --- | --- | --- | --- |
-| `ANJELA_BOOT.md` | `docs/context/boot.md` | draft | sanitized public template only |
-| `ANJELA_PERSONALITY.md` | `docs/context/personality.md` | draft | sanitized public template only |
-| `ANJELA_MEMORY.md` | `docs/context/memory.md` | draft | sanitized public template only |
-| `PROJECT_HISTORY.md` | `docs/context/project-history.md` | draft | public-safe history scaffold |
-| `ANJELA_ARCHIVE_INDEX.md` | `docs/context/archive-index.md` | draft | pointer-only index scaffold |
+| verified repository state | `docs/context/boot.md` | confirmed | startup context populated from the live repo state |
+| verified repository state | `docs/context/personality.md` | confirmed | public-facing style populated from current project guidance |
+| verified repository state | `docs/context/memory.md` | confirmed | durable project memory populated with safe facts |
+| verified repository state | `docs/context/project-history.md` | confirmed | milestones recorded from current repository content |
+| migration thread archive | `docs/context/archive-index.md` | confirmed | archive pointer recorded without raw transcript data |
+| public-safe context pack | `docs/context/migration/pack.md` | confirmed | package contents documented |
+| public-safe migration guide | `docs/context/migration/README.md` | confirmed | folder usage documented |
 
 ## Rule
 
