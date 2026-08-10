@@ -16,4 +16,4 @@ This folder holds the curated migration package for public-safe Anjela context.
 
 ## Status
 
-The folder is scaffolded and ready for populated migration content once the source files are provided or confirmed.
+The folder is active and contains the current public-safe migration package.
