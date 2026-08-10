@@ -16,4 +16,4 @@ This folder holds the curated migration package for public-safe Anjela context.
 
 ## Status
 
-The folder is active and contains the current public-safe migration package.
+The folder is active and contains the imported public-safe migration package.
