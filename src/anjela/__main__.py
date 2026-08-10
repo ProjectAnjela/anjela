@@ -3,7 +3,9 @@
 import os
 
 from .core import Anjela
+from .memory import ConversationMemory
 from .providers import EchoProvider, OpenAIProvider, Provider
+from .sqlite_memory import SQLiteConversationStore
 
 
 def build_provider() -> Provider:
@@ -15,7 +17,9 @@ def build_provider() -> Provider:
 
 def main() -> None:
     provider = build_provider()
-    assistant = Anjela(provider)
+    store = SQLiteConversationStore(os.getenv("ANJELA_DB", "anjela.db"))
+    memory = ConversationMemory(store=store)
+    assistant = Anjela(provider, memory)
 
     if isinstance(provider, OpenAIProvider):
         print(f"Anjela online ({provider.model}). Напиши 'exit' для выхода.")
