@@ -1,0 +1,42 @@
+# Anjela Context Index
+
+This directory is the canonical place for sanitized, versioned context that helps the project stay coherent over time.
+
+## What belongs here
+
+- The short boot context for starting Anjela safely
+- Personality and tone rules
+- Sanitized durable memory summaries
+- Project history and decisions
+- Archive indexes and pointers to older conversations
+- Migration notes and manifests
+
+## What does not belong here
+
+- API keys, tokens, cookies, or session state
+- Raw private transcripts that should not be public
+- Live local databases such as `anjela.db`
+- Anything that would expose a private source, user data, or deployment secret
+
+## Recommended structure
+
+```text
+docs/context/
+├── README.md
+├── migration.md
+├── boot.md
+├── personality.md
+├── memory.md
+├── project-history.md
+└── archive-index.md
+```
+
+## Reading order
+
+1. `README.md` for the rules of the folder
+2. `migration.md` for how the old migration pack maps into this layout
+3. The topical files for the actual working context
+
+## Operating rule
+
+If a fact is not confirmed by repository content or an approved archive, keep it out of the public repo or mark it as a placeholder.
