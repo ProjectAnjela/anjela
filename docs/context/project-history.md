@@ -122,3 +122,17 @@ This means historical assistant attempts to create/update repository content cou
 - Current code/config: GitHub.
 - Historical intent and rationale: conversation archive.
 - User's stable communication preferences: migration memory/personality docs.
+
+## Archive migration checkpoints
+
+### 2026-08-11 — previous-account export imported
+
+A ChatGPT export produced on 2026-08-10 was inspected and registered as the newest private historical source from the previous account.
+
+- 86 conversations were found, covering 2023-03-27 through 2026-08-09.
+- The earlier repository index represented 81 conversations, so five newer conversations were recovered.
+- A public-safe catalog and an import report were added under `docs/context/archive/` and `docs/context/migration/`.
+- Raw account metadata, attachments, location-sensitive material and verbatim sensitive conversations were deliberately kept out of the public repository.
+- The export reinforced the separation between durable Anjela context and temporary account/billing administration.
+
+See `docs/context/migration/import-2026-08-11.md` for details.
