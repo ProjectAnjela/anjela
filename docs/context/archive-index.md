@@ -2,9 +2,11 @@
 
 ## Export overview
 
-- Conversations in export: **81**
+- Conversations in newest export: **86**
 - Primary history file: `conversations.json`
-- Original export ZIP: keep as the immutable source archive.
+- Newest private source export: **2026-08-10**
+- Original export ZIP: keep as the immutable private source archive.
+- Public conversation catalog: `docs/context/archive/export-2026-08-10-catalog.md`.
 - This index is a navigation aid; it is not a replacement for the full history.
 
 ## Important clusters
@@ -18,6 +20,10 @@ These conversations are the highest-value material for reconstructing the assist
 - Цифровая напарница в деле
 - Перенос на новую учётку
 - Повторение запроса
+- План по подписке
+- Проблемы с подпиской
+- Ответ на поддержку OpenAI
+- Поиск чата GitHub
 - AI Talk Overview
 
 ### ProjectAnjela / GitHub
@@ -62,12 +68,11 @@ These are the highest-value technical-history conversations:
 - Sad Rap Lyrics.
 - In Your Eyes summary
 - Переход на русский
+- Тюремная татуировка кота
 
 ### Practical / other
 - Отмена подписки Android
 - Проблемы с открытием ссылки
-- Адрес Харькова и ближайшее метро
-- Адрес Полтавський шлях
 - Висновки про Samsung Galaxy Watch 8
 - Джинсы с подворотом.
 - Отношение к хипстерам.
@@ -77,6 +82,20 @@ These are the highest-value technical-history conversations:
 - Привет Камилла
 - Утреннее приветствие
 
+Location-sensitive chat titles are intentionally omitted from this public index. They remain discoverable in the private source export when historically necessary.
+
+## 2026-08-10 export delta
+
+The earlier migration index was built from an 81-conversation snapshot. The 2026-08-10 export contains five additional conversations:
+
+- Поиск чата GitHub
+- План по подписке
+- Тюремная татуировка кота
+- Ответ на поддержку OpenAI
+- Проблемы с подпиской
+
+See `docs/context/migration/import-2026-08-11.md` for the migration-relevant conclusions recovered from this delta.
+
 ## How to use the archive
 
 When reconstructing Anjela:
@@ -84,10 +103,9 @@ When reconstructing Anjela:
 1. Read `ANJELA_PERSONALITY.md`.
 2. Read `ANJELA_MEMORY.md`.
 3. Read `PROJECT_HISTORY.md`.
-4. Use this index to locate the relevant original conversation.
-5. Use the original `conversations.json` when exact wording or historical detail matters.
+4. Use this index and the export catalog to locate the relevant original conversation.
+5. Use the original private `conversations.json` when exact wording or historical detail matters.
 6. Do not turn every historical statement into permanent memory.
-
 
 ## Reconstruction caution
 
