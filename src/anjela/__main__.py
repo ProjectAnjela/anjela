@@ -2,6 +2,7 @@
 
 import os
 
+from .context_loader import ProjectContextLoader
 from .core import Anjela
 from .long_term_memory import LongTermMemory
 from .memory import ConversationMemory
@@ -21,7 +22,8 @@ def main() -> None:
     store = SQLiteConversationStore(os.getenv("ANJELA_DB", "anjela.db"))
     memory = ConversationMemory(store=store)
     long_term = LongTermMemory(store)
-    assistant = Anjela(provider, memory, long_term)
+    context_loader = ProjectContextLoader.from_project_root()
+    assistant = Anjela(provider, memory, long_term, context_loader)
 
     if isinstance(provider, OpenAIProvider):
         print(f"Anjela online ({provider.model}).")
