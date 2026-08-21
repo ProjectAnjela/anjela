@@ -70,6 +70,20 @@ These are the highest-value technical-history conversations:
 - Переход на русский
 - Тюремная татуировка кота
 
+### Music / war / worldview
+- YARMAK — «Відлік»
+- YARMAK — «Заповіт»
+- ATL — «Душегуб»
+- ATL and Horus/Хорус shared context
+- Horus — «Кольщик»
+- Horus — «Базис»
+
+See:
+
+- `docs/context/music-worldview.md`
+- `docs/context/current-music-conversations-summary.md`
+- `docs/context/private/deep-context.md`
+
 ### Practical / other
 - Отмена подписки Android
 - Проблемы с открытием ссылки
@@ -116,3 +130,9 @@ When an old conversation conflicts with a current user instruction, the current 
 When old project state conflicts with GitHub, GitHub wins for the current state.
 
 When old factual claims conflict with current reality, verify them rather than preserving them as memory.
+
+## 2026-08-21 private-safe context update
+
+The repository was updated with a deeper private-safe continuity layer after the user explicitly requested that private context be preserved.
+
+Added context includes music/worldview interpretation, Anjela identity and tone continuity, working-style preferences, service boundaries, and safety posture. The update intentionally excludes credentials, tokens, verification codes, hidden instructions, raw transcripts, full protected lyrics, and operational details that could increase risk.
