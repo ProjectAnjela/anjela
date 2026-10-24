@@ -6,13 +6,14 @@ Anjela is being built as a modular assistant with a small, testable core and cle
 
 ## Current stage
 
-**MVP 0.2 - first real AI provider + durable memory foundation**
+**MVP 0.3 - project context loader + durable memory foundation**
 
 - Python project layout
 - Core assistant loop
 - Provider interface
 - Local in-memory conversation state
 - Durable SQLite-backed long-term memory
+- Sanitized docs/context loader for project identity and history
 - OpenAI Responses API adapter
 - Automatic local fallback when no API key is configured
 - CLI entry point
@@ -40,6 +41,7 @@ anjela/
 ├── src/anjela/
 │   ├── __init__.py
 │   ├── __main__.py
+│   ├── context_loader.py
 │   ├── core.py
 │   ├── facts.py
 │   ├── long_term_memory.py
@@ -60,6 +62,8 @@ anjela/
 The canonical place for sanitized migration context is [`docs/context/README.md`](docs/context/README.md).
 
 The migration map lives in [`docs/context/migration.md`](docs/context/migration.md).
+
+At runtime, the CLI loads the selected top-level files from `docs/context` and sends them to providers as system context before conversation history. Durable user facts from SQLite are still injected separately, after project context and before user messages.
 
 ## Run locally
 
@@ -105,17 +109,18 @@ pytest
 
 ## Architecture
 
-The assistant core knows only about the `Provider` interface. The current OpenAI adapter uses the official Python SDK and the Responses API. Local conversation history and durable facts are stored separately through SQLite-backed memory classes, while public context docs stay sanitized and versioned.
+The assistant core knows only about the `Provider` interface. The current OpenAI adapter uses the official Python SDK and the Responses API. Local conversation history and durable facts are stored separately through SQLite-backed memory classes, while public context docs stay sanitized, versioned, and loaded through `ProjectContextLoader`.
 
 API keys are never stored in the repository. `.env` is ignored by Git; use `.env.example` as the template for local configuration.
 
 ## Roadmap
 
 1. Stable core and tests
-2. Real LLM provider adapter and durable memory **← current**
-3. Tool/plugin system
-4. API service
-5. Web/mobile interface
-6. Deployment
+2. Real LLM provider adapter and durable memory
+3. Project context loader **← current**
+4. Tool/plugin system
+5. API service
+6. Web/mobile interface
+7. Deployment
 
 The project deliberately grows in small, testable steps instead of turning into one giant script.
