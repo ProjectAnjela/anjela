@@ -45,6 +45,7 @@ anjela/
 │   ├── long_term_memory.py
 │   ├── memory.py
 │   ├── providers.py
+│   ├── spotify_listener.py
 │   └── sqlite_memory.py
 ├── tests/
 │   ├── test_core.py
@@ -102,6 +103,31 @@ For development:
 pip install -e '.[dev]'
 pytest
 ```
+
+## Spotify listening log
+
+Anjela can save Spotify listening history into the same SQLite database used for local memory. The listener uses Spotify's Web API `GET /me/player/recently-played` endpoint with the `user-read-recently-played` scope.
+
+Create a Spotify app in the Spotify Developer Dashboard, set its redirect URI to:
+
+```text
+http://127.0.0.1:8765/callback
+```
+
+Then run:
+
+```powershell
+$env:SPOTIFY_CLIENT_ID = 'your_spotify_client_id'
+anjela-spotify-listener --once
+```
+
+For continuous polling:
+
+```powershell
+anjela-spotify-listener --interval 60
+```
+
+The listener stores OAuth tokens under `~/.anjela/spotify-token.json` by default and stores deduplicated plays in the `spotify_listens` table. Spotify only exposes recent play history through this endpoint, so keep the listener running if you want a fuller ongoing archive.
 
 ## Architecture
 
