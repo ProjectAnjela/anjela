@@ -53,7 +53,7 @@ def test_provider_uses_loaded_context(monkeypatch, tmp_path: Path):
     provider = OpenAIProvider(model="test", api_key="fake")
     assert provider.respond([Message("user", "Привет")]) == "Привет!"
     assert "женском роде" in calls[0]["instructions"]
-    assert calls[0]["input"][0]["role"] == "developer"
+    assert calls[0]["input"][0]["role"] == "user"
     assert "Исторический факт" in calls[0]["input"][0]["content"]
     assert calls[0]["input"][1] == {"role": "user", "content": "Привет"}
 
