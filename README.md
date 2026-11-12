@@ -27,11 +27,8 @@ anjela/
 ├── docs/
 │   └── context/
 │       ├── README.md
-│       ├── boot.md
-│       ├── personality.md
-│       ├── memory.md
-│       ├── project-history.md
-│       ├── archive-index.md
+│       ├── archive/
+│       ├── templates/
 │       ├── migration.md
 │       └── migration/
 │           ├── pack.md
@@ -40,6 +37,13 @@ anjela/
 ├── src/anjela/
 │   ├── __init__.py
 │   ├── __main__.py
+│   ├── context/
+│   │   ├── boot.md
+│   │   ├── personality.md
+│   │   ├── memory.md
+│   │   ├── project-history.md
+│   │   └── archive-index.md
+│   ├── context_loader.py
 │   ├── core.py
 │   ├── facts.py
 │   ├── long_term_memory.py
@@ -57,7 +61,9 @@ anjela/
 
 ## Context layout
 
-The canonical place for sanitized migration context is [`docs/context/README.md`](docs/context/README.md).
+The canonical distributable runtime context lives in [`src/anjela/context/`](src/anjela/context/). These public-safe resources are included in the wheel and can be replaced at runtime with `ANJELA_CONTEXT_DIR`.
+
+Sanitized migration records, templates, and archive catalogs remain indexed in [`docs/context/README.md`](docs/context/README.md).
 
 The migration map lives in [`docs/context/migration.md`](docs/context/migration.md).
 
@@ -105,7 +111,7 @@ pytest
 
 ## Architecture
 
-The assistant core knows only about the `Provider` interface. The current OpenAI adapter uses the official Python SDK and the Responses API. Local conversation history and durable facts are stored separately through SQLite-backed memory classes, while public context docs stay sanitized and versioned.
+The assistant core knows only about the `Provider` interface. The current OpenAI adapter uses the official Python SDK and the Responses API. Local conversation history and durable facts are stored separately through SQLite-backed memory classes, while bundled public context resources stay sanitized and versioned.
 
 API keys are never stored in the repository. `.env` is ignored by Git; use `.env.example` as the template for local configuration.
 

@@ -1,15 +1,14 @@
 # Anjela Context Index
 
-This directory is the canonical place for sanitized, versioned context that helps the project stay coherent over time.
+This directory is the canonical index for sanitized migration records, templates, and archive catalogs that help the project stay coherent over time. Distributable runtime context lives in `src/anjela/context/` so a normal wheel installation can load it without a source checkout.
 
 ## What belongs here
 
-- The short boot context for starting Anjela safely
-- Personality and tone rules
-- Sanitized durable memory summaries
-- Project history and decisions
-- Archive indexes and pointers to older conversations
 - Migration notes, manifests, and templates
+- Archive catalogs and pointers to older conversations
+- Device migration notes
+
+The short boot context, personality rules, sanitized memory summary, project history, and runtime archive index belong in `src/anjela/context/`.
 
 ## What does not belong here
 
@@ -21,13 +20,16 @@ This directory is the canonical place for sanitized, versioned context that help
 ## Recommended structure
 
 ```text
-docs/context/
-├── README.md
+src/anjela/context/
 ├── boot.md
 ├── personality.md
 ├── memory.md
 ├── project-history.md
-├── archive-index.md
+└── archive-index.md
+
+docs/context/
+├── README.md
+├── archive/
 ├── templates/
 │   ├── README.md
 │   ├── ANJELA_BOOT.template.md
@@ -45,12 +47,12 @@ docs/context/
 2. `templates/README.md` for safe source scaffolding
 3. `migration.md` for how the old migration pack maps into this layout
 4. `migration/README.md` for how to maintain the migration subfolder
-5. The topical files for the actual working context
+5. The runtime files under `src/anjela/context/` for the actual working context
 6. The migration subfolder for source-to-target tracking
 
 ## Status
 
-The context root is now populated with real public-safe content, not placeholders.
+The packaged runtime context and this migration index are populated with real public-safe content, not placeholders.
 
 ## Operating rule
 

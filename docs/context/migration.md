@@ -4,11 +4,11 @@ This file defines how the migration pack should be broken down into stable, vers
 
 ## Source material to target mapping
 
-- `ANJELA_BOOT.md` -> `docs/context/boot.md`
-- `ANJELA_PERSONALITY.md` -> `docs/context/personality.md`
-- `ANJELA_MEMORY.md` -> `docs/context/memory.md`
-- `PROJECT_HISTORY.md` -> `docs/context/project-history.md`
-- `ANJELA_ARCHIVE_INDEX.md` -> `docs/context/archive-index.md`
+- `ANJELA_BOOT.md` -> `src/anjela/context/boot.md`
+- `ANJELA_PERSONALITY.md` -> `src/anjela/context/personality.md`
+- `ANJELA_MEMORY.md` -> `src/anjela/context/memory.md`
+- `PROJECT_HISTORY.md` -> `src/anjela/context/project-history.md`
+- `ANJELA_ARCHIVE_INDEX.md` -> `src/anjela/context/archive-index.md`
 - `Migration Pack` -> `docs/context/migration/pack.md`
 - `Migration Manifest` -> `docs/context/migration/manifest.md`
 
