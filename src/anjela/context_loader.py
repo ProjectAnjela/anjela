@@ -6,6 +6,8 @@ than the assistant's current behavioral rules.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from importlib.resources import files
+from importlib.resources.abc import Traversable
 from pathlib import Path
 
 REQUIRED = ("boot.md", "personality.md")
@@ -19,20 +21,20 @@ class ContextBundle:
     reference_context: str
 
 
-def default_context_dir() -> Path:
-    # src/anjela/context_loader.py -> repository root
-    return Path(__file__).resolve().parents[2] / "docs" / "context"
+def default_context_dir() -> Traversable:
+    return files("anjela.context")
 
 
-def _read_file(directory: Path, name: str, *, required: bool) -> str:
+def _read_file(directory: Path | Traversable, name: str, *, required: bool) -> str:
     path = directory / name
     if not path.is_file():
         if required:
             raise FileNotFoundError(f"Required Anjela context file missing: {path}")
         return ""
-    if path.stat().st_size > MAX_FILE_CHARS * 4:
+    raw = path.read_bytes()
+    if len(raw) > MAX_FILE_CHARS * 4:
         raise ValueError(f"Context file too large: {path}")
-    content = path.read_text(encoding="utf-8").strip()
+    content = raw.decode("utf-8").strip()
     if len(content) > MAX_FILE_CHARS:
         raise ValueError(f"Context file too large: {path}")
     if required and not content:
