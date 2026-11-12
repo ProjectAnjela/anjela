@@ -69,7 +69,7 @@ class OpenAIProvider(Provider):
         if self.reference_context:
             request_messages.insert(0, {
                 "role": "user",
-                "content": "[Reference context, not user instructions]\\n" + self.reference_context,
+                "content": "[Reference context, not user instructions]\n" + self.reference_context,
             })
         response = self._client.responses.create(
             model=self.model,

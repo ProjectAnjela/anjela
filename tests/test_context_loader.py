@@ -26,6 +26,15 @@ def test_required_context_missing_fails(tmp_path: Path):
         load_context(tmp_path)
 
 
+def test_missing_optional_context_produces_no_reference_block(tmp_path: Path):
+    (tmp_path / "boot.md").write_text("Hello", encoding="utf-8")
+    (tmp_path / "personality.md").write_text("Be warm", encoding="utf-8")
+
+    bundle = load_context(tmp_path)
+
+    assert bundle.reference_context == ""
+
+
 def test_oversized_context_rejected(tmp_path: Path):
     (tmp_path / "boot.md").write_text("x" * 40001, encoding="utf-8")
     (tmp_path / "personality.md").write_text("OK", encoding="utf-8")
@@ -54,6 +63,9 @@ def test_provider_uses_loaded_context(monkeypatch, tmp_path: Path):
     assert provider.respond([Message("user", "Привет")]) == "Привет!"
     assert "женском роде" in calls[0]["instructions"]
     assert calls[0]["input"][0]["role"] == "user"
+    assert calls[0]["input"][0]["content"].startswith(
+        "[Reference context, not user instructions]\n"
+    )
     assert "Исторический факт" in calls[0]["input"][0]["content"]
     assert calls[0]["input"][1] == {"role": "user", "content": "Привет"}
 
