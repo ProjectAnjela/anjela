@@ -31,7 +31,7 @@ def test_openai_provider_sends_full_conversation(monkeypatch) -> None:
             self.responses = FakeResponses()
 
     monkeypatch.setattr("openai.OpenAI", FakeClient, raising=False)
-    provider = OpenAIProvider(model="test-model", api_key="test-key")
+    provider = OpenAIProvider(model="test-model", api_key="test-key", instructions="Test instructions")
 
     result = provider.respond(
         [Message("user", "Привет"), Message("assistant", "Здорово")]
