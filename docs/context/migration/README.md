@@ -10,8 +10,8 @@ This folder holds the curated migration package for public-safe Anjela context.
 ## How to use this folder
 
 1. Record the source artifact name in `manifest.md`
-2. Map it to the target file under `docs/context`
-3. Only move sanitized, public-safe content into this tree
+2. Map runtime context to `src/anjela/context/` and migration-only records to `docs/context/`
+3. Only move sanitized, public-safe content into either public tree
 4. Keep any sensitive or personal raw source material outside the public repository
 
 ## Status
