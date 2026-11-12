@@ -1,8 +1,10 @@
+from io import BytesIO
 from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
 
+from anjela import context_loader
 from anjela.context_loader import load_context
 from anjela.memory import Message
 from anjela.providers import OpenAIProvider
@@ -40,6 +42,43 @@ def test_oversized_context_rejected(tmp_path: Path):
     (tmp_path / "personality.md").write_text("OK", encoding="utf-8")
     with pytest.raises(ValueError):
         load_context(tmp_path)
+
+
+def test_oversized_packaged_resource_uses_bounded_read(monkeypatch):
+    limit = context_loader.MAX_FILE_CHARS * 4
+    read_sizes = []
+
+    class GuardedStream(BytesIO):
+        def read(self, size=-1):
+            read_sizes.append(size)
+            if size < 0:
+                raise AssertionError("Context resources must not be read without a limit")
+            return super().read(size)
+
+    class OversizedResource:
+        def is_file(self):
+            return True
+
+        def read_bytes(self):
+            raise AssertionError("Context resources must not use unbounded read_bytes")
+
+        def open(self, mode):
+            assert mode == "rb"
+            return GuardedStream(b"x" * (limit + 1))
+
+        def __str__(self):
+            return "packaged-context/boot.md"
+
+    class ResourceRoot:
+        def __truediv__(self, name):
+            return OversizedResource()
+
+    monkeypatch.setattr(context_loader, "default_context_dir", ResourceRoot)
+
+    with pytest.raises(ValueError, match="Context file too large"):
+        context_loader.load_context()
+
+    assert read_sizes == [limit + 1]
 
 
 def test_provider_uses_loaded_context(monkeypatch, tmp_path: Path):

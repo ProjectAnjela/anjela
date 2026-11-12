@@ -31,8 +31,10 @@ def _read_file(directory: Path | Traversable, name: str, *, required: bool) -> s
         if required:
             raise FileNotFoundError(f"Required Anjela context file missing: {path}")
         return ""
-    raw = path.read_bytes()
-    if len(raw) > MAX_FILE_CHARS * 4:
+    byte_limit = MAX_FILE_CHARS * 4
+    with path.open("rb") as stream:
+        raw = stream.read(byte_limit + 1)
+    if len(raw) > byte_limit:
         raise ValueError(f"Context file too large: {path}")
     content = raw.decode("utf-8").strip()
     if len(content) > MAX_FILE_CHARS:
